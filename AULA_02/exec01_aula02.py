@@ -15,11 +15,6 @@ import pygame
 import math
 import numpy as np
 
-
-# ============================================================
-# Constantes de Configuração
-# ============================================================
-
 LARGURA_TELA = 800
 ALTURA_TELA = 600
 FPS = 60
@@ -28,11 +23,6 @@ COR_FUNDO = (30, 30, 30)
 COR_ROBO = (0, 180, 255)
 COR_DIRECAO = (255, 50, 50)
 COR_TRAJETORIA = (100, 200, 100)
-
-
-# ============================================================
-# Classe do Robô
-# ============================================================
 
 class DiffDriveRobot:
 
@@ -168,9 +158,6 @@ class DiffDriveRobot:
         )
 
 
-# ============================================================
-# Função Principal
-# ============================================================
 
 def main():
 
@@ -205,28 +192,16 @@ def main():
         # Delta time em segundos
         dt = clock.tick(FPS) / 1000.0
 
-        # ====================================================
-        # EVENTOS
-        # ====================================================
-
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
                 running = False
-
-        # ====================================================
-        # LEITURA DO TECLADO
-        # ====================================================
 
         keys = pygame.key.get_pressed()
 
         # Velocidade inicial das rodas
         v_left = 0.0
         v_right = 0.0
-
-        # ----------------------------------------------------
-        # RODA ESQUERDA
-        # ----------------------------------------------------
 
         # W = roda esquerda para frente
         if keys[pygame.K_w]:
@@ -236,10 +211,6 @@ def main():
         if keys[pygame.K_s]:
             v_left = -100.0
 
-        # ----------------------------------------------------
-        # RODA DIREITA
-        # ----------------------------------------------------
-
         # I = roda direita para frente
         if keys[pygame.K_i]:
             v_right = 100.0
@@ -248,33 +219,19 @@ def main():
         if keys[pygame.K_k]:
             v_right = -100.0
 
-        # ----------------------------------------------------
-        # Aplica as velocidades das rodas
-        # ----------------------------------------------------
 
         robot.set_wheel_velocities(
             v_left,
             v_right
         )
 
-        # ====================================================
-        # ATUALIZA A FÍSICA
-        # ====================================================
 
         robot.update(dt)
-
-        # ====================================================
-        # RENDERIZAÇÃO
-        # ====================================================
 
         screen.fill(COR_FUNDO)
 
         robot.draw(screen)
-
-        # ====================================================
-        # PAINEL DE TELEMETRIA
-        # ====================================================
-
+        
         info_txt = [
             f"Pose X: {robot.x:.1f} px | "
             f"Y: {robot.y:.1f} px | "
@@ -311,11 +268,6 @@ def main():
         pygame.display.flip()
 
     pygame.quit()
-
-
-# ============================================================
-# Executa o programa
-# ============================================================
 
 if __name__ == "__main__":
     main()
