@@ -1,15 +1,65 @@
-Resumo — Fundamentos de Robótica Móvel
+Resumo dos Códigos — Robótica Móvel
+Código 1 — Controle por Rodas
 
-Nessa aula vimos alguns conceitos básicos de robótica móvel, principalmente como representar a posição de um robô, como ele se movimenta e como podemos fazer ele chegar até um determinado objetivo.
+O primeiro código simula um robô com duas rodas independentes usando pygame.
 
-Primeiro, aprendemos sobre a pose 2D, que representa o estado do robô no plano. Ela é formada por x, y e theta. O x e o y representam a posição do robô, enquanto o theta representa para qual direção ele está virado. Essas informações são importantes porque com elas conseguimos saber onde o robô está e também calcular como ele deve se movimentar.
+A classe DiffDriveRobot controla:
 
-Depois vimos a cinemática diferencial, que é o modelo usado para um robô com duas rodas independentes. A velocidade das duas rodas define tanto a velocidade que o robô anda quanto a velocidade que ele gira. Quando as rodas estão com velocidades diferentes, o robô faz uma curva, e quando estão iguais ele anda mais reto. Uma coisa importante é que ele não consegue simplesmente andar de lado, ele precisa mudar sua orientação primeiro.
+x e y: posição do robô;
+theta: direção do robô;
+v: velocidade linear;
+omega: velocidade angular.
 
-Também estudamos a odometria, que é uma forma de estimar a posição do robô conforme ele vai se movimentando. A cada pequeno intervalo de tempo (dt), o sistema atualiza x, y e theta de acordo com as velocidades do robô. No código isso é feito usando integração de Euler. O problema é que pequenos erros vão se acumulando com o tempo, causando o chamado drift, então a posição calculada pode acabar ficando um pouco diferente da posição real.
+As teclas controlam cada roda:
 
-No exercício do quadrado, o robô andava em linha reta por um determinado tempo e depois fazia um giro de 90 graus. Esse processo era repetido quatro vezes. Esse controle é chamado de malha aberta, porque o robô não verifica onde realmente está, ele apenas segue os comandos baseados no tempo. Por isso, na prática, ele provavelmente não consegue terminar exatamente no mesmo ponto onde começou. Pequenos erros no tempo, no giro e na integração acabam se acumulando durante o percurso.
+W/S: roda esquerda;
+I/K: roda direita.
 
-Por fim, vimos o Go-To-Goal, que é uma forma mais inteligente de controlar o robô para chegar até um ponto escolhido. Nesse caso é usado um controlador proporcional, que calcula a distância entre o robô e o alvo e também o quanto ele precisa girar para ficar apontado na direção correta. Quanto mais longe do objetivo, maior pode ser a velocidade, e quanto mais desalinhado, maior será o giro. Quando ele chega perto o suficiente do alvo, para automaticamente.
+A função set_wheel_velocities() transforma a velocidade das rodas em velocidade linear e angular. A função update() atualiza a posição e a direção do robô usando a cinemática diferencial.
 
-No geral, a aula mostrou que controlar um robô não é só mandar ele andar, mas também saber onde ele está, para onde está indo e corrigir os erros durante o movimento. A diferença entre o quadrado em malha aberta e o Go-To-Goal mostra bem isso, já que o segundo consegue usar as informações do próprio robô para fazer correções durante o caminho.
+O código também desenha o robô, sua direção e o rastro do caminho.
+
+Código 2 — Quadrado em Malha Aberta
+
+O segundo código faz o robô percorrer um quadrado automaticamente.
+
+Ele utiliza uma máquina de estados:
+
+RETA: anda para frente por 2 segundos;
+GIRO: gira 90° por 1 segundo;
+FIM: encerra o movimento.
+
+O processo é repetido 4 vezes.
+
+Esse controle é de malha aberta, pois o robô não verifica sua posição para corrigir possíveis erros. Por isso, pequenas diferenças na velocidade, no tempo ou na integração podem causar um erro no final do quadrado.
+
+O programa calcula o erro de fechamento, que é a distância entre o ponto inicial e o ponto final.
+
+Código 3 — Go-To-Goal
+
+O terceiro código usa um controlador proporcional (P-Controller) para levar o robô até um ponto escolhido com o mouse.
+
+O controlador calcula:
+
+rho: distância até o alvo;
+alpha: erro entre a direção atual e a direção do alvo.
+
+Depois calcula as velocidades:
+
+v = KP_LINEAR * rho
+omega = KP_ANGULAR * alpha
+
+
+Quanto mais longe o robô estiver, mais rápido ele anda. Quanto maior o erro de direção, mais ele gira.
+
+Quando chega próximo do alvo, o robô para automaticamente.
+
+Diferente do código 2, esse sistema utiliza malha fechada, pois verifica constantemente a posição do robô e corrige seu movimento.
+
+Conclusão
+
+Os três códigos mostram uma evolução do controle:
+
+Código 1 → controle manual das rodas
+Código 2 → movimento automático em malha aberta
+Código 3 → navegação automática em malha fechada
