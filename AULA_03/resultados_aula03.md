@@ -61,28 +61,8 @@ Este laboratório combina os dois comportamentos anteriores: atração a um alvo
 
 ### 2. Exercício de maior dificuldade de compreensão
 
-O **Laboratório 5 (Go-to-Goal com desvio)** foi o mais difícil de entender e
-implementar corretamente. A dificuldade principal está em combinar dois
-comportamentos que competem entre si — "ir até o alvo" e "fugir do
-obstáculo" — sem que um atrapalhe o outro. Foi preciso pensar em como
-alternar entre os dois modos (atração vs. repulsão) de forma suave, e como
-calcular corretamente o erro angular entre a orientação atual do robô e a
-direção do alvo, normalizando o ângulo para o intervalo correto
-(usando `atan2` do seno e cosseno da diferença, em vez de uma subtração
-direta que poderia gerar saltos incorretos perto de ±180°). Entender por que
-essa normalização é necessária exigiu revisar com calma o conceito de erro
-angular em coordenadas polares.
+Para o nosso grupo, o Laboratório 5, que aborda a navegação Go-to-Goal com desvio de obstáculos, foi a atividade que apresentou o maior nível de dificuldade. O principal desafio foi compreender como integrar dois comportamentos diferentes no mesmo sistema; o deslocamento em direção ao objetivo e a reação de desvio quando um obstáculo é detectado. Após realizar diversos testes e analisar o comportamento do simulador, conseguimos compreender melhor como esses cálculos influenciam diretamente a tomada de decisão do robô. 
 
 ### 3. Impressões gerais sobre as dificuldades técnicas até o momento
 
-Até este ponto, a maior dificuldade tem sido sair do raciocínio de
-"programar uma sequência de comandos" e passar a pensar em termos de
-**malha fechada**: o robô lê o ambiente, decide e age continuamente, quadro
-a quadro, sem um roteiro fixo. Os conceitos de cinemática diferencial
-(transformar `v` e `ω` em velocidades de roda `vL` e `vR`, e vice-versa)
-também exigiram atenção redobrada, pois pequenos erros de sinal nas fórmulas
-fazem o robô girar para o lado errado. Por fim, entender o papel do ruído
-gaussiano nos sensores ajudou a perceber que, em robótica real, nenhuma
-leitura é perfeita — o que reforça a importância de sistemas de controle
-tolerantes a pequenas variações, tema que deve ser aprofundado nas próximas
-aulas.
+Até o momento, a principal dificuldade do grupo tem sido compreender a lógica de funcionamento dos sistemas robóticos, que precisam analisar o ambiente e tomar decisões continuamente. Além disso, a cinemática diferencial exigiu bastante atenção, principalmente para entender a relação entre as velocidades do robô e das rodas. As simulações também mostraram a influência do ruído nos sensores, destacando a importância de desenvolver sistemas capazes de lidar com pequenas imprecisões. Esses desafios têm contribuído para ampliar nossa compreensão sobre os conceitos de robótica estudados em aula.
