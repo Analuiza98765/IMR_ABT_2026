@@ -121,7 +121,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-#fim do código
 
 
 ### Print da execução
