@@ -7,8 +7,6 @@ O código foi executado com sucesso no VS Code utilizando a biblioteca Pygame.
 Foi possível observar o funcionamento de três sensores de distância (esquerda, frente e direita), que detectam obstáculos retangulares através da técnica de raycasting. As leituras dos sensores são atualizadas em tempo real conforme o robô se movimenta pelo ambiente.
 
 ### Código
-# Projete e execute o script que ilustra como calcular a interseção de 3 raios sensores com obstáculos retangulares no Pygame.
-
 import pygame
 import math
 import numpy as np
