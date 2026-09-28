@@ -8,7 +8,7 @@
 
 ## Exercício 3 - Entrada
 
-<img width="799" height="617" alt="image" src="https://github.com/user-attachments/assets/d27dc0a8-b43a-42f7-ba5b-0250a573d52f" />
+<img width="799" height="617" alt="image" src="https://github.com/user-attachments/assets/3e02edf1-ce2d-4e12-b741-f54816704cca" />
 
 ## Exercício 4 - Entrada
 
