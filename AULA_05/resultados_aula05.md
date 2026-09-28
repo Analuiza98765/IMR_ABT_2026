@@ -16,7 +16,7 @@
 
 ## Exercício 5 - Entrada
 
-<img width="758" height="602" alt="image" src="https://github.com/user-attachments/assets/db4d7d8e-740d-46e8-9fba-59f0e51b010c" />
+<img width="765" height="594" alt="image" src="https://github.com/user-attachments/assets/73fcbc07-ba26-4265-a638-080546ad38dc" />
 
 
 ## Prints dos exercícios solicitados (Saída)
